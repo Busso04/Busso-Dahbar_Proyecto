@@ -11,6 +11,9 @@ class Autor : public Persona {
     private:
         string Medio;
     public:
-        Autor(string, int, string);
-        void mostrarDatos();
+        Autor(string nombre, int DNI, string Medio);
+        string getNombre() const;
+        int getDNI() const;
+        string getMedio() const;
+        
 };

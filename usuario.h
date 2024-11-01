@@ -11,6 +11,8 @@ class Usuario : public Persona {
     private:
         int Edad;
     public:
-        Usuario(string, int, int);
-        void mostrarDatos();
+        Usuario(string nombre, int DNI, int Edad);
+        string getNombre() const;
+        int getDNI() const;
+        int getEdad() const;
 };

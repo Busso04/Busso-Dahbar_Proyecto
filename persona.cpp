@@ -6,9 +6,14 @@
 
 using namespace std;
 
+Persona ::Persona(string nombre, int DNI) {
+    nombre = nombre;
+    DNI = DNI ;
+}
+
 Persona::Persona(string nombre, int DNI) {
-    this->nombre = nombre;
-    this->DNI = DNI;
+    nombre = nombre;
+    DNI = DNI;
 }
 
 string Persona::getNombre() const {
@@ -17,12 +22,4 @@ string Persona::getNombre() const {
 
 int Persona::getDNI() const {
     return DNI;
-}
-
-void Persona::setNombre(string nombre) {
-    this->nombre = nombre;
-}
-
-void Persona::setDNI(int DNI) {
-    this->DNI = DNI;
-}
+};

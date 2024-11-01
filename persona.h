@@ -10,6 +10,7 @@ class Persona {
         string nombre;
         int DNI;
     public:
-        Persona(string, int);
-        void mostrarDatos();
+        Persona(string nombre, int DNI);
+        string getNombre() const ;
+        int getDNI() const;
 };

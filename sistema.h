@@ -13,24 +13,51 @@
 
 using namespace std;
 
+const int Maximo_Autores = 100;
+const int Maximo_Usuarios = 100;
+const int Maximo_Noticias = 100;
+const int Maximo_Comentarios = 100;
+
+
 class Sistema {
     private:
-    vector<Autor> autores;
-    vector<Usuario> usuarios;
-    vector<Noticia> noticias;
 
+    Noticia noticias[Maximo_Noticias];
+    Autor autores[Maximo_Autores];
+    Usuario usuarios[Maximo_Usuarios];
+    int cantidadAutores;
+    int cantidadUsuarios;
+    int cantidadNoticias;
+    int cantidadComentarios;
+    void guardarAutores();
+    void guardarUsuarios();
+    void guardarNoticias();
+    void guardarComentarios();
+    void mostrarAutores();
+    void mostrarUsuarios();
+    void mostrarNoticias();
+    void mostrarComentarios();
 public:
     // Métodos de registro
-    void registrarAutor(const Autor& autor) {
-        autores.push_back(autor);
-    }
-    
-    void registrarUsuario(const Usuario& usuario) {
-        usuarios.push_back(usuario);
-    }
+   void registrarAutores(string nombre, int DNI, string Medio);
 
-    void registrarNoticia(const Noticia& noticia) {
-        noticias.push_back(noticia);
-    }
+    void registrarUsuarios(string nombre, int DNI, int Edad);
+
+    void registrarNoticias(string Titulo, string Cuerpo, Autor autor,int dia, int mes, int año, int dniAutor);
+
+    void registrarComentarios(string Comentario, Noticia noticia);
+
+    void mostrarAutores();
+
+    void ordenarAutores();
+
+    void ordenarNoticias();
+
+    void mostrarNoticias();
+
+    void mostrarComentarios();
+
+    void interfaz();
+
 
 };
