@@ -1,3 +1,6 @@
+#ifndef SISTEMA_H
+#define SISTEMA_H
+
 #include <string>
 #include <iostream>
 #include <vector>
@@ -13,18 +16,18 @@
 
 using namespace std;
 
-const int Maximo_Autores = 100;
-const int Maximo_Usuarios = 100;
-const int Maximo_Noticias = 100;
-const int Maximo_Comentarios = 100;
+enum TipoRegistro
+{
+    AUTOR,
+    USUARIO
+};
 
-
-class Sistema {
-    private:
-
-    Noticia noticias[Maximo_Noticias];
-    Autor autores[Maximo_Autores];
-    Usuario usuarios[Maximo_Usuarios];
+class Sistema
+{
+private:
+    Noticia noticias[100];
+    Autor autores[100];
+    Usuario usuarios[100];
     int cantidadAutores;
     int cantidadUsuarios;
     int cantidadNoticias;
@@ -37,13 +40,12 @@ class Sistema {
     void mostrarUsuarios();
     void mostrarNoticias();
     void mostrarComentarios();
+
 public:
     // Métodos de registro
-   void registrarAutores(string nombre, int DNI, string Medio);
+    void registrar(TipoRegistro tipo, string nombre, int DNI, string Medio = "", int Edad = 0);
 
-    void registrarUsuarios(string nombre, int DNI, int Edad);
-
-    void registrarNoticias(string Titulo, string Cuerpo, Autor autor,int dia, int mes, int año, int dniAutor);
+    void registrarNoticias(string Titulo, string Cuerpo, Autor autor, int dia, int mes, int año, int dniAutor);
 
     void registrarComentarios(string Comentario, Noticia noticia);
 
@@ -58,6 +60,6 @@ public:
     void mostrarComentarios();
 
     void interfaz();
-
-
 };
+
+#endif

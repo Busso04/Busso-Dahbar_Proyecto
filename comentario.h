@@ -1,3 +1,6 @@
+#ifndef COMENTARIO_H
+#define COMENTARIO_H
+
 #include <string>
 #include <iostream>
 #include <vector>
@@ -6,11 +9,15 @@
 #include "usuario.cpp"
 using namespace std;
 
-class Comentario {
-    private:
-        string comentario;
-        Usuario usuario;
-    public:
-        Comentario(string, Usuario);
-        void mostrarDatos();
+class Comentario
+{
+private:
+    string comentario;
+    Usuario usuario;
+
+public:
+    Comentario(string, Usuario);
+    void mostrarDatos();
 };
+
+#endif
