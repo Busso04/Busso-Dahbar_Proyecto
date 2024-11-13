@@ -6,6 +6,7 @@
 #include <vector>
 #include <fstream>
 #include "autor.h"
+#include "comentario.h"
 
 using namespace std;
 
@@ -28,7 +29,7 @@ public:
     int getDia() const;
     int getMes() const;
     int getAño() const;
-    void agregarComentario();
+    void agregarComentario(const Comentario &comentario);
     void obtenerComentarios();
     string toString() const;
 };

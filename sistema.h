@@ -26,11 +26,10 @@ private:
     vector<Usuario> usuarios;
     vector<Noticia> noticias;
     vector<Comentario> comentarios;
-    Usuario *usuarioActual = nullptr; // Usuario que ha iniciado sesión
-    Autor *autorActual = nullptr;     // Autor que ha iniciado sesión
+    Usuario *usuarioActual = nullptr;
+    Autor *autorActual = nullptr;
 
 public:
-    // Métodos de registro
     void registrar(TipoRegistro tipo, string nombre, int DNI, string Medio = "", int Edad = 0);
 
     void guardarUsuarios();
@@ -41,9 +40,13 @@ public:
 
     void guardarComentarios();
 
+    void cargarUsuarios();
+
+    void cargarAutores();
+
     void registrarNoticias(string Titulo, string Cuerpo, Autor autor, int dia, int mes, int año);
 
-    void registrarComentarios(string Comentario, Noticia noticia);
+    void registrarComentarios(string Comentario, Noticia &noticia);
 
     void mostrarAutores();
 
@@ -52,6 +55,8 @@ public:
     void ordenarNoticias();
 
     void mostrarNoticias();
+
+    void mostrarNoticiasPorAutor(const string &nombreAutor);
 
     void mostrarComentarios();
 
@@ -64,6 +69,12 @@ public:
     void crearNoticia();
 
     void interfaz();
+
+    void cargarnoticia();
+
+    void cargarComentario();
+
+    Sistema();
 };
 
 #endif

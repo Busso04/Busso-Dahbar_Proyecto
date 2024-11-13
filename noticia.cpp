@@ -3,6 +3,7 @@
 #include <vector>
 #include "noticia.h"
 #include "autor.h"
+#include "comentario.h"
 
 using namespace std;
 
@@ -49,9 +50,11 @@ int Noticia::getAño() const
   return Año;
 }
 
-void Noticia::agregarComentario()
+void Noticia::agregarComentario(const Comentario &comentario)
+
 {
-  cout << "Comentario agregado" << endl;
+
+  cout << "Comentario agregado: " << comentario.getComentario() << endl;
 }
 
 void Noticia::obtenerComentarios()

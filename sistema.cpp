@@ -7,28 +7,40 @@
 
 using namespace std;
 
+Sistema::Sistema()
+{
+    cargarUsuarios();
+    cargarAutores();
+}
+
 void Sistema::registrar(TipoRegistro tipo, string nombre, int DNI, string Medio, int Edad)
 {
     if (tipo == AUTOR)
     {
         autores.push_back(Autor(nombre, DNI, Medio));
+        guardarAutores(); // Guardar autores inmediatamente después de crearlos
     }
     else
     {
         usuarios.push_back(Usuario(nombre, DNI, Edad));
+        guardarUsuarios(); // Guardar usuarios inmediatamente después de crearlos
     }
 }
 
 void Sistema::registrarNoticias(string Titulo, string Cuerpo, Autor autor, int dia, int mes, int año)
 {
     noticias.push_back(Noticia(Titulo, Cuerpo, autor, dia, mes, año));
+    guardarNoticias();
 }
 
-void Sistema::registrarComentarios(string comentarioTexto, Noticia noticia)
+void Sistema::registrarComentarios(string comentarioTexto, Noticia &noticia)
 {
-    if (!usuarios.empty())
+    if (usuarioActual != nullptr)
     {
-        comentarios.push_back(Comentario(comentarios.size() + 1, comentarioTexto, usuarios[0])); // Assuming the first user is the one commenting
+        Comentario comentario(comentarios.size() + 1, comentarioTexto, *usuarioActual);
+        comentarios.push_back(comentario);
+        noticia.agregarComentario(comentario);
+        guardarComentarios();
     }
     else
     {
@@ -38,6 +50,8 @@ void Sistema::registrarComentarios(string comentarioTexto, Noticia noticia)
 
 void Sistema::mostrarAutores()
 {
+    cargarAutores();
+
     for (const auto &autor : autores)
     {
         cout << autor.toString() << endl;
@@ -58,9 +72,52 @@ void Sistema::ordenarNoticias()
 
 void Sistema::mostrarNoticias()
 {
+
+    int opcion;
+    cout << "1. Mostrar todas las noticias" << endl;
+    cout << "2. Filtrar por autor" << endl;
+    cout << "3. Ordenar por fecha" << endl;
+    cout << "Opcion: ";
+    cin >> opcion;
+
+    switch (opcion)
+    {
+    case 1:
+        for (const auto &noticia : noticias)
+        {
+            noticia.mostrarDatos();
+        }
+        break;
+    case 2:
+    {
+        string nombreAutor;
+        cout << "Ingrese el nombre del autor: ";
+        cin.ignore();
+        getline(cin, nombreAutor);
+        mostrarNoticiasPorAutor(nombreAutor);
+        break;
+    }
+    case 3:
+        ordenarNoticias();
+        for (const auto &noticia : noticias)
+        {
+            noticia.mostrarDatos();
+        }
+        break;
+    default:
+        cout << "Opcion invalida." << endl;
+        break;
+    }
+}
+
+void Sistema::mostrarNoticiasPorAutor(const string &nombreAutor)
+{
     for (const auto &noticia : noticias)
     {
-        noticia.mostrarDatos();
+        if (noticia.getAutor().getNombre() == nombreAutor)
+        {
+            noticia.mostrarDatos();
+        }
     }
 }
 
@@ -74,6 +131,7 @@ void Sistema::mostrarComentarios()
 
 void Sistema::iniciarSesion()
 {
+    cargarUsuarios();
     string nombre;
     int DNI;
     cout << "Nombre: ";
@@ -94,6 +152,7 @@ void Sistema::iniciarSesion()
 
 void Sistema::iniciarSesionAutor()
 {
+    cargarAutores();
     string nombre;
     int DNI;
     cout << "Nombre: ";
@@ -242,7 +301,7 @@ void Sistema::guardarUsuarios()
     ofstream archivo("usuarios.txt");
     for (const auto &usuario : usuarios)
     {
-        archivo << usuario.toString() << endl;
+        archivo << usuario.getDNI() << " " << usuario.getNombre() << " " << usuario.getEdad() << endl;
     }
     archivo.close();
 }
@@ -252,7 +311,7 @@ void Sistema::guardarAutores()
     ofstream archivo("autores.txt");
     for (const auto &autor : autores)
     {
-        archivo << autor.toString() << endl;
+        archivo << autor.getDNI() << " " << autor.getNombre() << " " << autor.getMedio() << endl;
     }
     archivo.close();
 }
@@ -273,6 +332,81 @@ void Sistema::guardarComentarios()
     for (const auto &comentario : comentarios)
     {
         archivo << comentario.toString() << endl;
+    }
+    archivo.close();
+}
+
+void Sistema::cargarUsuarios()
+{
+    ifstream archivo("usuarios.txt");
+    if (!archivo.is_open())
+    {
+        cout << "No se pudo abrir el archivo de usuarios." << endl;
+        return;
+    }
+
+    string nombre;
+    int DNI, Edad;
+    while (archivo >> DNI >> nombre >> Edad)
+    {
+        usuarios.push_back(Usuario(nombre, DNI, Edad));
+    }
+    archivo.close();
+}
+
+void Sistema::cargarAutores()
+{
+    ifstream archivo("autores.txt");
+    if (!archivo.is_open())
+    {
+        cout << "No se pudo abrir el archivo de autores." << endl;
+        return;
+    }
+
+    string nombre, Medio;
+    int DNI;
+    while (archivo >> nombre >> DNI >> Medio)
+    {
+        autores.push_back(Autor(nombre, DNI, Medio));
+    }
+    archivo.close();
+}
+
+void Sistema::cargarnoticia()
+{
+    ifstream archivo("noticias.txt");
+    if (!archivo.is_open())
+    {
+        cout << "No se pudo abrir el archivo de noticias." << endl;
+        return;
+    }
+
+    string Titulo, Cuerpo;
+    string autorNombre, autorMedio;
+    int autorDNI, Dia, Mes, Año;
+    while (archivo >> Titulo >> Cuerpo >> autorNombre >> autorDNI >> autorMedio >> Dia >> Mes >> Año)
+    {
+        Autor autor(autorNombre, autorDNI, autorMedio);
+        noticias.push_back(Noticia(Titulo, Cuerpo, autor, Dia, Mes, Año));
+    }
+    archivo.close();
+}
+
+void Sistema::cargarComentario()
+{
+    ifstream archivo("comentarios.txt");
+    if (!archivo.is_open())
+    {
+        cout << "No se pudo abrir el archivo de comentarios." << endl;
+        return;
+    }
+
+    int numero, usuarioDNI, usuarioEdad;
+    string comentario, usuarioNombre;
+    while (archivo >> numero >> comentario >> usuarioNombre >> usuarioDNI >> usuarioEdad)
+    {
+        Usuario usuario(usuarioNombre, usuarioDNI, usuarioEdad);
+        comentarios.push_back(Comentario(numero, comentario, usuario));
     }
     archivo.close();
 }
