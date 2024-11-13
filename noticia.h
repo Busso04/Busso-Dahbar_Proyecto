@@ -16,13 +16,21 @@ private:
     string Titulo;
     string Cuerpo;
     Autor autor;
-    Dia dia;
-    Mes mes;
-    Año año;
+    int Dia;
+    int Mes;
+    int Año;
 
 public:
-    Noticia(string, string, Autor);
+    Noticia(string, string, Autor, int, int, int);
     void mostrarDatos();
+    string getTitulo() const;
+    string getCuerpo() const;
+    Autor getAutor() const;
+    int getDia() const;
+    int getMes() const;
+    int getAño() const;
+    void agregarComentario();
+    void obtenerComentarios();
 };
 
 #endif

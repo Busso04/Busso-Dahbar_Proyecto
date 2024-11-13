@@ -20,6 +20,8 @@ public:
     string getNombre() const;
     int getDNI() const;
     string getMedio() const;
+    void publicarNoticia();
+    void obtenerNoticias();
 };
 
 #endif

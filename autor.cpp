@@ -4,19 +4,32 @@
 
 using namespace std;
 
-Autor::Autor(string nombre, int DNI, string Medio) : Persona(nombre, DNI) {
+Autor::Autor(string nombre, int DNI, string Medio) : Persona(nombre, DNI)
+{
     this->Medio = Medio;
 }
 
-string Autor::getNombre() const {
+string Autor::getNombre() const
+{
     return nombre;
 }
 
-int Autor::getDNI() const {
+int Autor::getDNI() const
+{
     return DNI;
 }
 
-string Autor::getMedio() const {
+string Autor::getMedio() const
+{
     return Medio;
 }
 
+void Autor::publicarNoticia()
+{
+    cout << "Noticia publicada" << endl;
+}
+
+void Autor::obtenerNoticias()
+{
+    cout << "Noticias obtenidas" << endl;
+}
