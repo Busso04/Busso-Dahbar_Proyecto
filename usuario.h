@@ -3,10 +3,8 @@
 
 #include <string>
 #include <iostream>
-#include <vector>
 #include <fstream>
 #include "persona.h"
-#include "persona.cpp"
 
 using namespace std;
 
@@ -17,9 +15,13 @@ private:
 
 public:
     Usuario(string nombre, int DNI, int Edad);
+
     string getNombre() const;
     int getDNI() const;
     int getEdad() const;
+
+    // Método para guardar los datos del usuario en un archivo de texto
+    void guardarUsuario(ofstream &archivo) const;
 };
 
 #endif

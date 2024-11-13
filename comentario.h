@@ -6,18 +6,28 @@
 #include <vector>
 #include <fstream>
 #include "usuario.h"
-#include "usuario.cpp"
+
 using namespace std;
 
 class Comentario
 {
 private:
-    string comentario;
-    Usuario usuario;
+    int numero;  // Número de comentario
+    string comentario;  // Texto del comentario
+    Usuario usuario;  // Usuario que realizó el comentario
 
 public:
-    Comentario(string, Usuario);
-    void mostrarDatos();
+    // Constructor con número de comentario, texto y usuario
+    Comentario(int numero, string comentario, Usuario usuario);
+
+    // Métodos para mostrar y guardar datos
+    void mostrarDatos() const;
+    void guardarComentario(ofstream &archivo) const;
+
+    // Getters
+    int getNumero() const;
+    string getComentario() const;
+    Usuario getUsuario() const;
 };
 
 #endif
