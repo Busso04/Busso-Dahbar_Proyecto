@@ -26,10 +26,14 @@ string Autor::getMedio() const
 
 void Autor::publicarNoticia()
 {
-    cout << "Noticia publicada" << endl;
 }
 
 void Autor::obtenerNoticias()
 {
     cout << "Noticias obtenidas" << endl;
+}
+
+string Autor::toString() const
+{
+    return nombre + " " + to_string(DNI) + " " + Medio;
 }

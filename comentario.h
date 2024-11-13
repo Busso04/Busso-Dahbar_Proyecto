@@ -12,22 +12,19 @@ using namespace std;
 class Comentario
 {
 private:
-    int numero;  // Número de comentario
-    string comentario;  // Texto del comentario
-    Usuario usuario;  // Usuario que realizó el comentario
+    int numero;        // Número de comentario
+    string comentario; // Texto del comentario
+    Usuario usuario;   // Usuario que realizó el comentario
 
 public:
     // Constructor con número de comentario, texto y usuario
-    Comentario(int numero, string comentario, Usuario usuario);
-
-    // Métodos para mostrar y guardar datos
-    void mostrarDatos() const;
-    void guardarComentario(ofstream &archivo) const;
-
+    Comentario(int numero, const string &comentario, const Usuario &usuario);
     // Getters
     int getNumero() const;
     string getComentario() const;
     Usuario getUsuario() const;
+    void mostrarDatos() const;
+    string toString() const;
 };
 
 #endif

@@ -11,11 +11,12 @@ Noticia::Noticia(string Titulo, string Cuerpo, Autor autor, int Dia, int Mes, in
 {
 }
 
-void Noticia::mostrarDatos()
+void Noticia::mostrarDatos() const
 {
   cout << "Titulo: " << Titulo << endl;
   cout << "Cuerpo: " << Cuerpo << endl;
   cout << "Autor: " << autor.getNombre() << endl;
+  cout << "Fecha: " << Dia << "/" << Mes << "/" << Año << endl;
 }
 
 string Noticia::getTitulo() const
@@ -56,4 +57,9 @@ void Noticia::agregarComentario()
 void Noticia::obtenerComentarios()
 {
   cout << "Comentarios obtenidos" << endl;
+}
+
+string Noticia::toString() const
+{
+  return Titulo + " " + Cuerpo + " " + autor.toString() + " " + to_string(Dia) + " " + to_string(Mes) + " " + to_string(Año);
 }

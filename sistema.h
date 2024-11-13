@@ -6,13 +6,10 @@
 #include <vector>
 #include <fstream>
 #include "autor.h"
-#include "autor.cpp"
 #include "persona.h"
-#include "persona.cpp"
 #include "usuario.h"
-#include "usuario.cpp"
 #include "noticia.h"
-#include "noticia.cpp"
+#include "comentario.h"
 
 using namespace std;
 
@@ -25,27 +22,26 @@ enum TipoRegistro
 class Sistema
 {
 private:
-    Noticia noticias[100];
-    Autor autores[100];
-    Usuario usuarios[100];
-    int cantidadAutores;
-    int cantidadUsuarios;
-    int cantidadNoticias;
-    int cantidadComentarios;
-    void guardarAutores();
-    void guardarUsuarios();
-    void guardarNoticias();
-    void guardarComentarios();
-    void mostrarAutores();
-    void mostrarUsuarios();
-    void mostrarNoticias();
-    void mostrarComentarios();
+    vector<Autor> autores;
+    vector<Usuario> usuarios;
+    vector<Noticia> noticias;
+    vector<Comentario> comentarios;
+    Usuario *usuarioActual = nullptr; // Usuario que ha iniciado sesión
+    Autor *autorActual = nullptr;     // Autor que ha iniciado sesión
 
 public:
     // Métodos de registro
     void registrar(TipoRegistro tipo, string nombre, int DNI, string Medio = "", int Edad = 0);
 
-    void registrarNoticias(string Titulo, string Cuerpo, Autor autor, int dia, int mes, int año, int dniAutor);
+    void guardarUsuarios();
+
+    void guardarAutores();
+
+    void guardarNoticias();
+
+    void guardarComentarios();
+
+    void registrarNoticias(string Titulo, string Cuerpo, Autor autor, int dia, int mes, int año);
 
     void registrarComentarios(string Comentario, Noticia noticia);
 
@@ -58,6 +54,14 @@ public:
     void mostrarNoticias();
 
     void mostrarComentarios();
+
+    void iniciarSesion();
+
+    void iniciarSesionAutor();
+
+    void subirComentario();
+
+    void crearNoticia();
 
     void interfaz();
 };

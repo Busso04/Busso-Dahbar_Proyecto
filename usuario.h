@@ -22,6 +22,10 @@ public:
 
     // Método para guardar los datos del usuario en un archivo de texto
     void guardarUsuario(ofstream &archivo) const;
+
+    // Convertir el usuario a string
+
+    string toString() const;
 };
 
 #endif

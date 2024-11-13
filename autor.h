@@ -6,7 +6,6 @@
 #include <vector>
 #include <fstream>
 #include "persona.h"
-#include "persona.cpp"
 
 using namespace std;
 
@@ -22,6 +21,7 @@ public:
     string getMedio() const;
     void publicarNoticia();
     void obtenerNoticias();
+    string toString() const;
 };
 
 #endif

@@ -5,7 +5,6 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include "autor.cpp"
 #include "autor.h"
 
 using namespace std;
@@ -21,8 +20,8 @@ private:
     int Año;
 
 public:
-    Noticia(string, string, Autor, int, int, int);
-    void mostrarDatos();
+    Noticia(string Titulo, string Cuerpo, Autor autor, int Dia, int Mes, int Año);
+    void mostrarDatos() const;
     string getTitulo() const;
     string getCuerpo() const;
     Autor getAutor() const;
@@ -31,6 +30,7 @@ public:
     int getAño() const;
     void agregarComentario();
     void obtenerComentarios();
+    string toString() const;
 };
 
 #endif
