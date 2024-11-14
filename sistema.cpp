@@ -183,7 +183,7 @@ void Sistema::subirComentario()
     int noticiaIndex;
     cout << "Ingrese el indice de la noticia a comentar: ";
     cin >> noticiaIndex;
-    if (noticiaIndex < 0 || noticiaIndex >= noticias.size())
+    if (noticiaIndex < 0 || noticiaIndex >= static_cast<int>(noticias.size()))
     {
         cout << "Indice de noticia invalido." << endl;
         return;
