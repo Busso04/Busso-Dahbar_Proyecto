@@ -19,6 +19,7 @@ private:
     int Dia;
     int Mes;
     int Año;
+    vector<Comentario> comentarios;
 
 public:
     Noticia(string Titulo, string Cuerpo, Autor autor, int Dia, int Mes, int Año);
@@ -30,7 +31,7 @@ public:
     int getMes() const;
     int getAño() const;
     void agregarComentario(const Comentario &comentario);
-    void obtenerComentarios();
+    void obtenerComentarios() const;
     string toString() const;
 };
 

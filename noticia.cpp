@@ -51,15 +51,16 @@ int Noticia::getAño() const
 }
 
 void Noticia::agregarComentario(const Comentario &comentario)
-
 {
-
-  cout << "Comentario agregado: " << comentario.getComentario() << endl;
+  comentarios.push_back(comentario);
 }
 
-void Noticia::obtenerComentarios()
+void Noticia::obtenerComentarios() const
 {
-  cout << "Comentarios obtenidos" << endl;
+  for (const auto &comentario : comentarios)
+  {
+    comentario.mostrarDatos();
+  }
 }
 
 string Noticia::toString() const
