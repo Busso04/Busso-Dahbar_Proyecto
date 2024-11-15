@@ -138,9 +138,10 @@ void Sistema::iniciarSesion()
     cin >> nombre;
     cout << "DNI: ";
     cin >> DNI;
-    while (DNI < 1000000 || DNI > 99999999) {
-    cout << "DNI no válido. Ingrese un número entre 1,000,000 y 99,999,999: ";
-    cin >> DNI;
+    while (DNI < 1000000 || DNI > 99999999)
+    {
+        cout << "DNI no válido. Ingrese un número entre 1,000,000 y 99,999,999: ";
+        cin >> DNI;
     }
     for (auto &usuario : usuarios)
     {
@@ -163,9 +164,10 @@ void Sistema::iniciarSesionAutor()
     cin >> nombre;
     cout << "DNI: ";
     cin >> DNI;
-    while (DNI < 1000000 || DNI > 99999999) {
-    cout << "DNI no válido. Ingrese un número entre 1,000,000 y 99,999,999: ";
-    cin >> DNI;
+    while (DNI < 1000000 || DNI > 99999999)
+    {
+        cout << "DNI no válido. Ingrese un número entre 1,000,000 y 99,999,999: ";
+        cin >> DNI;
     }
     for (auto &autor : autores)
     {
@@ -186,7 +188,7 @@ void Sistema::subirComentario()
         cout << "Debe iniciar sesion como usuario para subir un comentario." << endl;
         return;
     }
-
+    cargarnoticia();
     string comentarioTexto;
     int noticiaIndex;
     cout << "Ingrese el indice de la noticia a comentar: ";
@@ -219,21 +221,24 @@ void Sistema::crearNoticia()
     getline(cin, cuerpo);
     cout << "Ingrese el dia: ";
     cin >> dia;
-    while (dia < 1 || dia > 31) {
-    cout << "Dia no valido. Intente nuevamente(1-31) ";
-    cin >> dia;
+    while (dia < 1 || dia > 31)
+    {
+        cout << "Dia no valido. Intente nuevamente(1-31) ";
+        cin >> dia;
     }
     cout << "Ingrese el mes: ";
     cin >> mes;
-    while (mes < 1 || mes > 12) {
-    cout << "Mes no valido. Intente nuevamente(1-12) ";
-    cin >> mes;
+    while (mes < 1 || mes > 12)
+    {
+        cout << "Mes no valido. Intente nuevamente(1-12) ";
+        cin >> mes;
     }
     cout << "Ingrese el año: ";
     cin >> año;
-    while (año < 1900 || año > 2100) {
-    cout << "Dia no valido. Intente nuevamente(1900-2100) ";
-    cin >> año;
+    while (año < 1900 || año > 2100)
+    {
+        cout << "Dia no valido. Intente nuevamente(1900-2100) ";
+        cin >> año;
     }
     registrarNoticias(titulo, cuerpo, *autorActual, dia, mes, año);
 }
@@ -267,17 +272,19 @@ void Sistema::interfaz()
             int Edad;
             cout << "Tipo (1. Autor, 2. Usuario): ";
             cin >> tipo;
-            while (tipo < 1 || tipo > 2) {
-            cout << "Tipo no valido. Intente nuevamente(1-2) ";
-            cin >> tipo;
+            while (tipo < 1 || tipo > 2)
+            {
+                cout << "Tipo no valido. Intente nuevamente(1-2) ";
+                cin >> tipo;
             }
             cout << "Nombre: ";
             cin >> nombre;
             cout << "DNI: ";
             cin >> DNI;
-            while (DNI < 1000000 || DNI > 99999999) {
-            cout << "DNI no válido. Ingrese un número entre 1,000,000 y 99,999,999: ";
-            cin >> DNI;
+            while (DNI < 1000000 || DNI > 99999999)
+            {
+                cout << "DNI no válido. Ingrese un número entre 1,000,000 y 99,999,999: ";
+                cin >> DNI;
             }
             if (tipo == 1)
             {
