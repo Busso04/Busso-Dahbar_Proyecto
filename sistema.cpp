@@ -20,14 +20,10 @@ void Sistema::registrar(TipoRegistro tipo, string nombre, int DNI, string Medio,
         autores.push_back(Autor(nombre, DNI, Medio));
         guardarAutores(); // Guardar autores inmediatamente después de crearlos
     }
-    if (tipo == USUARIO)
+    else
     {
         usuarios.push_back(Usuario(nombre, DNI, Edad));
         guardarUsuarios(); // Guardar usuarios inmediatamente después de crearlos
-    }
-    else if (tipo != AUTOR && tipo != USUARIO)
-    {
-        cout << "Tipo de registro no válido." << endl;
     }
 }
 
@@ -60,12 +56,6 @@ void Sistema::mostrarAutores()
     {
         cout << autor.toString() << endl;
     }
-}
-
-void Sistema::ordenarAutores()
-{
-    sort(autores.begin(), autores.end(), [](const Autor &a, const Autor &b)
-         { return a.getDNI() < b.getDNI(); });
 }
 
 void Sistema::ordenarNoticias()
@@ -258,10 +248,9 @@ void Sistema::interfaz()
         cout << "4. Subir comentario" << endl;
         cout << "5. Crear noticia" << endl;
         cout << "6. Mostrar autores" << endl;
-        cout << "7. Ordenar autores" << endl;
-        cout << "8. Mostrar noticias" << endl;
-        cout << "9. Ordenar noticias" << endl;
-        cout << "10. Mostrar comentarios" << endl;
+        cout << "7. Mostrar noticias" << endl;
+        cout << "8. Ordenar noticias" << endl;
+        cout << "9. Mostrar comentarios" << endl;
         cout << "0. Salir" << endl;
         cout << "Opcion: ";
         cin >> opcion;
@@ -320,15 +309,12 @@ void Sistema::interfaz()
             mostrarAutores();
             break;
         case 7:
-            ordenarAutores();
-            break;
-        case 8:
             mostrarNoticias();
             break;
-        case 9:
+        case 8:
             ordenarNoticias();
             break;
-        case 10:
+        case 9:
             mostrarComentarios();
             break;
         }
