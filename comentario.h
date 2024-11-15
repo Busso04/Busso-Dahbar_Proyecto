@@ -12,14 +12,12 @@ using namespace std;
 class Comentario
 {
 private:
-    int numero;        // Número de comentario
-    string comentario; // Texto del comentario
-    Usuario usuario;   // Usuario que realizó el comentario
+    int numero;        
+    string comentario; 
+    Usuario usuario;   
 
 public:
-    // Constructor con número de comentario, texto y usuario
     Comentario(int numero, const string &comentario, const Usuario &usuario);
-    // Getters
     int getNumero() const;
     string getComentario() const;
     Usuario getUsuario() const;

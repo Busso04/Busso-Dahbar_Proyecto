@@ -20,10 +20,14 @@ void Sistema::registrar(TipoRegistro tipo, string nombre, int DNI, string Medio,
         autores.push_back(Autor(nombre, DNI, Medio));
         guardarAutores(); // Guardar autores inmediatamente después de crearlos
     }
-    else
+    if (tipo == USUARIO)
     {
         usuarios.push_back(Usuario(nombre, DNI, Edad));
         guardarUsuarios(); // Guardar usuarios inmediatamente después de crearlos
+    }
+    else if (tipo != AUTOR && tipo != USUARIO)
+    {
+        cout << "Tipo de registro no válido." << endl;
     }
 }
 
